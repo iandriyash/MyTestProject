@@ -10,7 +10,7 @@ public class Person {
 
     // Конструктор
     public Person(String name, double money) {
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Имя не может быть пустым");
         }
         if (money < 0) {

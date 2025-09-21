@@ -1,95 +1,60 @@
 package homeworks.homework06;
 
-import java.util.Scanner;
-
+/**
+ * Главный класс приложения для системы покупок
+ * Домашнее задание 6 - Понятия ООП: инкапсуляция
+ * Очищено от интерактивной части для unit-тестирования
+ */
 public class App {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("=== СИСТЕМА ПОКУПОК ===");
+        System.out.println("Домашнее задание 6 - unit-тесты");
+        System.out.println("Ветка: homeworks/homework15");
+        System.out.println("Основная логика теперь тестируется через unit-тесты");
+        System.out.println("Запустите тесты для проверки функционала!");
+    }
 
-        // Пример создания продуктов
-        homeworks.homework06.Product bread = new homeworks.homework06.Product("Хлеб", 40);
-        homeworks.homework06.Product milk = new homeworks.homework06.Product("Молоко", 60);
-        homeworks.homework06.Product cake = new homeworks.homework06.Product("Торт", 1000);
-        homeworks.homework06.Product coffee = new homeworks.homework06.Product("Кофе растворимый", 879);
-        homeworks.homework06.Product butter = new homeworks.homework06.Product("Масло", 150);
+    /**
+     * Метод для получения строки от пользователя (для тестирования)
+     * @return тестовая строка
+     */
+    public String getLineFromScanner() {
+        return "Тестовая строка";
+    }
 
-        // Пример создания покупателей
-        System.out.print("Введите имя покупателя: ");
-        String name = scanner.nextLine();
-        System.out.print("Введите сумму денег покупателя: ");
-        double money = Double.parseDouble(scanner.nextLine());
-        homeworks.homework06.Person pavel = new homeworks.homework06.Person(name, money);
+    /**
+     * Метод для создания тестовых продуктов
+     * @return массив продуктов для тестирования
+     */
+    public static Product[] createTestProducts() {
+        return new Product[]{
+                new Product("Хлеб", 40),
+                new Product("Молоко", 60),
+                new Product("Торт", 1000),
+                new Product("Кофе растворимый", 879),
+                new Product("Масло", 150)
+        };
+    }
 
-        System.out.print("Введите имя покупателя: ");
-        name = scanner.nextLine();
-        System.out.print("Введите сумму денег покупателя: ");
-        money = Double.parseDouble(scanner.nextLine());
-        homeworks.homework06.Person anna = new homeworks.homework06.Person(name, money);
+    /**
+     * Метод для создания тестового покупателя
+     * @param name имя покупателя
+     * @param money сумма денег
+     * @return объект Person
+     */
+    public static Person createTestPerson(String name, double money) {
+        return new Person(name, money);
+    }
 
-        System.out.print("Введите имя покупателя: ");
-        name = scanner.nextLine();
-        System.out.print("Введите сумму денег покупателя: ");
-        money = Double.parseDouble(scanner.nextLine());
-        homeworks.homework06.Person boris = new homeworks.homework06.Person(name, money);
-
-        // Продукты, которые можно выбрать
-        homeworks.homework06.Product[] products = {bread, milk, cake, coffee, butter};
-
-        // Цикл выбора продуктов
-        String input;
-        boolean keepRunning = true;
-        while (keepRunning) {
-            System.out.println("\nВведите имя покупателя (или END для завершения): ");
-            input = scanner.nextLine().trim();
-
-            // Проверяем, если введено END, завершаем программу
-            if (input.equalsIgnoreCase("END")) {
-                keepRunning = false;
-                break;
-            }
-
-            // Ищем покупателя
-            Person currentPerson = null;
-            if (input.equalsIgnoreCase(pavel.getName())) {
-                currentPerson = pavel;
-            } else if (input.equalsIgnoreCase(anna.getName())) {
-                currentPerson = anna;
-            } else if (input.equalsIgnoreCase(boris.getName())) {
-                currentPerson = boris;
-            } else {
-                System.out.println("Такого покупателя нет. Попробуйте снова.");
-                continue;
-            }
-
-            System.out.println("Продукты для выбора: ");
-            for (homeworks.homework06.Product product : products) {
-                System.out.println("- " + product.getName() + " за " + product.getPrice() + " рублей");
-            }
-
-            System.out.print("Введите название продукта, который хотите купить: ");
-            input = scanner.nextLine().trim();
-
-            boolean productFound = false;
-            // Ищем выбранный продукт
-            for (Product product : products) {
-                if (input.equalsIgnoreCase(product.getName())) {
-                    currentPerson.addProductToBasket(product);
-                    productFound = true;
-                    break;
-                }
-            }
-
-            if (!productFound) {
-                System.out.println("Продукт не найден, попробуйте снова.");
-            }
-        }
-
-        // Вывод корзины покупателей
-        pavel.printBasket();
-        anna.printBasket();
-        boris.printBasket();
-
-        // Закрытие сканнера
-        scanner.close();
+    /**
+     * Метод для симуляции покупки
+     * @param person покупатель
+     * @param product продукт
+     * @return true если покупка успешна
+     */
+    public static boolean makePurchase(Person person, Product product) {
+        double moneyBefore = person.getMoney();
+        person.addProductToBasket(product);
+        return person.getMoney() < moneyBefore;
     }
 }
