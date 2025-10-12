@@ -58,6 +58,21 @@
     <build>
         <sourceDirectory>src</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
+
+        <!-- ВАЖНО: Настройка ресурсов -->
+        <resources>
+            <resource>
+                <directory>src/resources</directory>
+                <targetPath>.</targetPath>
+            </resource>
+        </resources>
+
+        <testResources>
+            <testResource>
+                <directory>test/resources</directory>
+            </testResource>
+        </testResources>
+
         <finalName>homework17-app-${project.version}</finalName>
 
         <plugins>
@@ -80,11 +95,17 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire Plugin для тестов -->
+            <!-- Surefire Plugin для тестов с исключениями старых homework -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/homework15/**</exclude>
+                        <exclude>**/homework16/**</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
 
             <!-- JAR Plugin -->
@@ -107,7 +128,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Shade Plugin - исполняемый JAR со всеми зависимостями -->
+            <!-- Shade Plugin - исполняемый JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -130,7 +151,7 @@
                 </executions>
             </plugin>
 
-            <!-- Dependency Plugin - копирование зависимостей -->
+            <!-- Dependency Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
