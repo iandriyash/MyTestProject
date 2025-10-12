@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
-    private String name;
+    private final String name;
     private double money;
-    private List<homeworks.homework06.Product> basket;
+    private final List<Product> basket;
 
     // Конструктор
     public Person(String name, double money) {
@@ -65,7 +65,7 @@ public class Person {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        homeworks.homework06.Person person = (homeworks.homework06.Person) obj;
+        Person person = (Person) obj;
         return Double.compare(person.money, money) == 0 && name.equals(person.name);
     }
 
