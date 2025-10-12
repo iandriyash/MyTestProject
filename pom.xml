@@ -93,9 +93,33 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+                <executions>
+                    <!-- Компиляция основного кода -->
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <!-- Компиляция тестов с исключениями -->
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <testExcludes>
+                                <testExclude>**/homework15/**/*.java</testExclude>
+                                <testExclude>**/homework16/**/*.java</testExclude>
+                            </testExcludes>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
-            <!-- Surefire Plugin для тестов с исключениями старых homework -->
+            <!-- Surefire Plugin для тестов с исключениями -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
