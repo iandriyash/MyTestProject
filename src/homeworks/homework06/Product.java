@@ -6,7 +6,7 @@ public class Product {
 
     // Конструктор
     public Product(String name, double price) {
-        if (name == null || name.isEmpty()) {
+        if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Название продукта не может быть пустым");
         }
         if (price < 0) {
@@ -34,7 +34,7 @@ public class Product {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        homeworks.homework06.Product product = (homeworks.homework06.Product) obj;
+        Product product = (Product) obj;
         return Double.compare(product.price, price) == 0 && name.equals(product.name);
     }
 
