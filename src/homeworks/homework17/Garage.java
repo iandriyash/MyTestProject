@@ -1,23 +1,18 @@
 package homeworks.homework17;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Garage {
-    private Car[] parkedCars;
+    private Car[] parkedCars = new Car[0];
 
-    // Конструктор с параметрами
-    public Garage(Car[] parkedCars) {
-        this.parkedCars = parkedCars != null ? parkedCars : new Car[0];
-    }
-
-    // Пустой конструктор
-    public Garage() {
-        this.parkedCars = new Car[0];
-    }
-
-    // Метод модификации автомобиля (как в примере преподавателя)
     public void modificateCar(int carNumber) {
         if (carNumber < 0 || carNumber >= parkedCars.length) {
             System.out.println("Неверный номер автомобиля");
@@ -40,32 +35,10 @@ public class Garage {
         }
     }
 
-    // Геттеры и сеттеры
-    public Car[] getParkedCars() {
-        return parkedCars;
-    }
-
-    public void setParkedCars(Car[] parkedCars) {
-        this.parkedCars = parkedCars != null ? parkedCars : new Car[0];
-    }
-
     @Override
     public String toString() {
         return "Garage{" +
                 "parkedCars=" + Arrays.toString(parkedCars) +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Garage garage = (Garage) o;
-        return Objects.deepEquals(parkedCars, garage.parkedCars);
-    }
-
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(parkedCars);
     }
 }

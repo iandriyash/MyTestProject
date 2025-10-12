@@ -1,17 +1,14 @@
 package homeworks.homework17;
 
+import lombok.NoArgsConstructor;
+
 import java.util.Arrays;
 
+@NoArgsConstructor
 public class DriftRace extends Race {
 
-    // Конструктор с параметрами
     public DriftRace(int length, String route, int prizeFund, Car[] participants) {
         super(length, route, prizeFund, participants);
-    }
-
-    // Пустой конструктор
-    public DriftRace() {
-        super();
     }
 
     @Override
