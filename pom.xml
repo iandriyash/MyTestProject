@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.homeworks</groupId>
@@ -10,16 +9,20 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Homework 17 - Maven + Lombok + Repository</name>
-    <description>Домашнее задание 17 - Работа с Maven, Lombok и Repository Pattern</description>
+    <name>Homework 17/18 - Maven + Lombok + DB + Flyway</name>
+    <description>Домашние 17-18. Работа с Maven, Lombok, PostgreSQL, Flyway</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <junit.version>5.8.1</junit.version>
         <mockito.version>4.0.0</mockito.version>
         <lombok.version>1.18.30</lombok.version>
+        <postgresql.version>42.7.0</postgresql.version>
+        <flyway.version>9.22.3</flyway.version>
+        <hikaricp.version>5.1.0</hikaricp.version>
     </properties>
 
     <dependencies>
@@ -30,7 +33,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -53,20 +55,48 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- PostgreSQL Driver -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
+        <!-- Flyway Core -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${flyway.version}</version>
+        </dependency>
+
+        <!-- Flyway PostgreSQL Support -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-database-postgresql</artifactId>
+            <version>10.0.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- HikariCP (pool соединений) -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikaricp.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <!-- Нестандартная структура: код в src, ресурсы в src/resources, тесты в test -->
         <sourceDirectory>src</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
 
-        <!-- ВАЖНО: Настройка ресурсов -->
         <resources>
             <resource>
                 <directory>src/resources</directory>
                 <targetPath>.</targetPath>
             </resource>
         </resources>
-
         <testResources>
             <testResource>
                 <directory>test/resources</directory>
@@ -76,7 +106,7 @@
         <finalName>homework17-app-${project.version}</finalName>
 
         <plugins>
-            <!-- Compiler Plugin с поддержкой Lombok -->
+            <!-- Компилятор + аннотационные процессоры (Lombok) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -93,46 +123,63 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
-                <executions>
-                    <!-- Компиляция основного кода -->
-                    <execution>
-                        <id>default-compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <!-- Компиляция тестов с исключениями -->
-                    <execution>
-                        <id>default-testCompile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                        <configuration>
-                            <testExcludes>
-                                <testExclude>**/homework15/**/*.java</testExclude>
-                                <testExclude>**/homework16/**/*.java</testExclude>
-                            </testExcludes>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
-            <!-- Surefire Plugin для тестов с исключениями -->
+            <!-- Запуск тестов -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/homework15/**</exclude>
-                        <exclude>**/homework16/**</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
 
-            <!-- JAR Plugin -->
+            <!-- ============================================== -->
+            <!-- FLYWAY MAVEN PLUGIN - ИСПРАВЛЕНО! -->
+            <!-- ============================================== -->
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.version}</version>
+                <configuration>
+                    <!-- Подключение к БД -->
+                    <url>jdbc:postgresql://localhost:5433/homework18_db</url>
+                    <user>postgres</user>
+                    <password>postgres</password>
+
+                    <!-- Где искать миграции -->
+                    <locations>
+                        <location>filesystem:src/resources/db/migration</location>
+                    </locations>
+
+                    <!-- Создать baseline если БД уже существует -->
+                    <baselineOnMigrate>true</baselineOnMigrate>
+
+                    <!-- Схема по умолчанию -->
+                    <defaultSchema>public</defaultSchema>
+
+                    <!-- Показывать SQL в консоли -->
+                </configuration>
+
+                <!-- Добавляем PostgreSQL драйвер для плагина -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>${postgresql.version}</version>
+                    </dependency>
+                </dependencies>
+
+                <!-- Автоматически запускать миграции при package/install -->
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>migrate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Создание обычного JAR с манифестом -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -142,17 +189,13 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>homeworks.homework17.App</mainClass>
+                            <mainClass>homeworks.homework18.App</mainClass>
                         </manifest>
-                        <manifestEntries>
-                            <Built-By>Maven</Built-By>
-                            <Implementation-Version>${project.version}</Implementation-Version>
-                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
 
-            <!-- Shade Plugin - исполняемый JAR -->
+            <!-- Fat JAR (если нужно собрать один исполняемый jar со всеми зависимостями) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -167,7 +210,7 @@
                             <finalName>homework17-executable-${project.version}</finalName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>homeworks.homework17.App</mainClass>
+                                    <mainClass>homeworks.homework18.App</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -175,7 +218,7 @@
                 </executions>
             </plugin>
 
-            <!-- Dependency Plugin -->
+            <!-- Копирование зависимостей в target/lib -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -192,6 +235,16 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Maven Resources Plugin для копирования файлов миграций -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
         </plugins>
     </build>

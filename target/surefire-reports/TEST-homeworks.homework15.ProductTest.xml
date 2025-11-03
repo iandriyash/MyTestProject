@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.02" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="homeworks.homework15.ProductTest" time="0.032" tests="24" errors="0" skipped="1" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,36 +59,109 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testFindAll" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.006">
-    <system-out><![CDATA[✓ Загружено: 3 автомобилей
+  <testcase name="testEqualsWithNullAndOtherObjects" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест equals с null и другими типами пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testCount" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ Count работает
+  <testcase name="testEqualsWithSameProducts" classname="homeworks.homework15.ProductTest" time="0.002">
+    <system-out><![CDATA[Тест equals для одинаковых продуктов пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testSave" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ Save работает
+  <testcase name="testEqualsWithDifferentProducts" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест equals для разных продуктов пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testFindByBrandCaseInsensitive" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.002">
-    <system-out><![CDATA[✓ Поиск без учёта регистра работает
+  <testcase name="testProductCreationHighPrice" classname="homeworks.homework15.ProductTest" time="0">
+    <system-out><![CDATA[Тест с ценой 1000000.0 пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testFindById" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ FindById работает
+  <testcase name="testProductCreationFromRealData1" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест реальных данных: Хлеб за 40.0 руб пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testFindByBrand" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ FindByBrand работает
+  <testcase name="testProductCreationFromRealData2" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест реальных данных: Молоко за 60.0 руб пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testIntegration" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.002">
-    <system-out><![CDATA[✓ Интеграционный тест пройден
+  <testcase name="testValidProductCreation" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест создания продукта пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testFindByIdInvalid" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ Несуществующий индекс вернул null
+  <testcase name="testProductCreationSmallPrice" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест с ценой 0.01 пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testProductCreationZeroPrice" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест с ценой 0.0 пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testWhitespaceNameThrowsException" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест исключения для пробельного имени пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testNegativePriceThrowsException1" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест исключения для цены -1.0 пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testNegativePriceThrowsException2" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест исключения для цены -100.0 пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testVeryLongName" classname="homeworks.homework15.ProductTest" time="0">
+    <system-out><![CDATA[Тест длинного названия пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testProductCreationCoffee" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест с именем 'Кофе растворимый' пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testEmptyNameThrowsException" classname="homeworks.homework15.ProductTest" time="0.002">
+    <system-out><![CDATA[Тест исключения для пустого имени пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testProductCreationMilk" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест с именем 'Молоко' пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testProductCreationBread" classname="homeworks.homework15.ProductTest" time="0">
+    <system-out><![CDATA[Тест с именем 'Хлеб белый' пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testMultipleExceptions" classname="homeworks.homework15.ProductTest" time="0.002">
+    <system-out><![CDATA[Тест множественных исключений пройден
+]]></system-out>
+  </testcase>
+  <testcase name="finalProductTestReport" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[=== ОТЧЕТ ПО ТЕСТИРОВАНИЮ КЛАССА PRODUCT ===
+Пакет: homeworks.homework06
+Класс тестов: homeworks.homework15.ProductTest
+Общее количество тестов: 22
+Позитивных тестов: 11
+Негативных тестов: 6
+Тестов методов: 4
+Игнорируемых тестов: 1
+Статус: ВСЕ АКТИВНЫЕ ТЕСТЫ ПРОЙДЕНЫ
+===========================================
+]]></system-out>
+  </testcase>
+  <testcase name="testMinimalPrice" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест минимальной цены пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testNullNameThrowsException" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест исключения для null имени пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testIgnoredSpecialCharacters" classname="homeworks.homework15.ProductTest" time="0">
+    <skipped message="Этот тест игнорируется для демонстрации функции @Disabled"/>
+  </testcase>
+  <testcase name="testToStringMethod" classname="homeworks.homework15.ProductTest" time="0.001">
+    <system-out><![CDATA[Тест toString пройден
+Результат: Молоко за 60.5 рублей
+]]></system-out>
+  </testcase>
+  <testcase name="testVeryHighPrice" classname="homeworks.homework15.ProductTest" time="0">
+    <system-out><![CDATA[Тест высокой цены пройден
 ]]></system-out>
   </testcase>
 </testsuite>
