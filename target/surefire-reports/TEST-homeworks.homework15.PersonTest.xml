@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.02" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="homeworks.homework15.PersonTest" time="0.078" tests="31" errors="0" skipped="1" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,36 +59,153 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testFindAll" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.006">
-    <system-out><![CDATA[✓ Загружено: 3 автомобилей
+  <testcase name="testEqualsWithNullAndOtherObjects" classname="homeworks.homework15.PersonTest" time="0.002">
+    <system-out><![CDATA[Тест equals с null и другими типами пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testCount" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ Count работает
+  <testcase name="testValidPersonCreation" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест создания покупателя пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testSave" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ Save работает
+  <testcase name="testPersonCreationZeroMoney" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест с суммой 0.0 пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testFindByBrandCaseInsensitive" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.002">
-    <system-out><![CDATA[✓ Поиск без учёта регистра работает
+  <testcase name="testPrintEmptyBasket" classname="homeworks.homework15.PersonTest" time="0.002">
+    <system-out><![CDATA[Тестовый покупатель - Ничего не куплено
+Тест печати пустой корзины пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testFindById" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ FindById работает
+  <testcase name="testEqualsWithSamePersons" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест equals для одинаковых покупателей пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testFindByBrand" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ FindByBrand работает
+  <testcase name="testPersonCreationFromRealData1" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест реальных данных: Павел с 1500.0 руб пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testIntegration" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.002">
-    <system-out><![CDATA[✓ Интеграционный тест пройден
+  <testcase name="testPersonCreationFromRealData2" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест реальных данных: Екатерина с 500.0 руб пройден
 ]]></system-out>
   </testcase>
-  <testcase name="testFindByIdInvalid" classname="homeworks.homework17.repository.CarRepositoryFileImplTest" time="0.001">
-    <system-out><![CDATA[✓ Несуществующий индекс вернул null
+  <testcase name="testEqualsWithDifferentPersons" classname="homeworks.homework15.PersonTest" time="0">
+    <system-out><![CDATA[Тест equals для разных покупателей пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testPersonWithZeroMoney" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Бедняк не может позволить себе Продукт
+Тест покупателя без денег пройден
+]]></system-out>
+  </testcase>
+  <testcase name="finalPersonTestReport" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[=== ОТЧЕТ ПО ТЕСТИРОВАНИЮ КЛАССА PERSON ===
+Пакет: homeworks.homework06
+Класс тестов: homeworks.homework15.PersonTest
+Общее количество тестов: 29
+Позитивных тестов: 15
+Негативных тестов: 6
+Тестов методов: 6
+Игнорируемых тестов: 1
+Интеграционных тестов: 1
+Статус: ВСЕ АКТИВНЫЕ ТЕСТЫ ПРОЙДЕНЫ
+=============================================
+]]></system-out>
+  </testcase>
+  <testcase name="testWhitespaceNameThrowsException" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест исключения для пробельного имени пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testNegativeMoneyThrowsException1" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест исключения для суммы -1.0 пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testNegativeMoneyThrowsException2" classname="homeworks.homework15.PersonTest" time="0.005">
+    <system-out><![CDATA[Тест исключения для суммы -100.0 пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testMultipleProductsPurchase" classname="homeworks.homework15.PersonTest" time="0.002">
+    <system-out><![CDATA[Покупатель купил Продукт 1
+Покупатель купил Продукт 2
+Покупатель купил Продукт 3
+Тест покупки нескольких продуктов пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testExpensiveProductPurchase" classname="homeworks.homework15.PersonTest" time="0.003">
+    <system-out><![CDATA[Бедный покупатель не может позволить себе Дорогой продукт
+Тест покупки дорогого продукта пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testPrintBasketWithProducts" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тестовый покупатель купил Хлеб
+Тестовый покупатель купил Молоко
+Тестовый покупатель - Хлеб, Молоко
+Тест печати корзины с продуктами пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testVeryRichPerson" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Богач купил Продукт
+Тест очень богатого покупателя пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testPurchaseWithExactMoney" classname="homeworks.homework15.PersonTest" time="0.003">
+    <system-out><![CDATA[Точный покупатель купил Продукт
+Тест покупки с точной суммой пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testPersonCreationBoris" classname="homeworks.homework15.PersonTest" time="0.004">
+    <system-out><![CDATA[Тест с именем 'Борис Петрович' пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testPersonCreationMaria" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест с именем 'Мария-Антуанетта' пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testSuccessfulProductPurchase" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тестовый покупатель купил Тестовый продукт
+Тест успешной покупки пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testEmptyNameThrowsException" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест исключения для пустого имени пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testPersonCreationAnna" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест с именем 'Анна' пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testMultipleExceptions" classname="homeworks.homework15.PersonTest" time="0.002">
+    <system-out><![CDATA[Тест множественных исключений для Person пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testPurchaseMinimalPriceProduct" classname="homeworks.homework15.PersonTest" time="0">
+    <system-out><![CDATA[Покупатель купил Бесплатный
+Тест покупки бесплатного продукта пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testNullNameThrowsException" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест исключения для null имени пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testIntegrationWithRealProducts" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Покупатель купил Хлеб
+Покупатель купил Молоко
+Интеграционный тест с реальными продуктами пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testIgnoredDiscountPurchase" classname="homeworks.homework15.PersonTest" time="0">
+    <skipped message="Тест игнорируется для демонстрации @Disabled"/>
+  </testcase>
+  <testcase name="testToStringMethod" classname="homeworks.homework15.PersonTest" time="0.003">
+    <system-out><![CDATA[Тест toString пройден
+Результат: Анна имеет 750.5 рублей
+]]></system-out>
+  </testcase>
+  <testcase name="testPersonCreationHighMoney" classname="homeworks.homework15.PersonTest" time="0.002">
+    <system-out><![CDATA[Тест с суммой 999999.99 пройден
+]]></system-out>
+  </testcase>
+  <testcase name="testPersonCreationSmallMoney" classname="homeworks.homework15.PersonTest" time="0.001">
+    <system-out><![CDATA[Тест с суммой 100.0 пройден
 ]]></system-out>
   </testcase>
 </testsuite>

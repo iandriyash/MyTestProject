@@ -19,7 +19,9 @@ C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework01\Task2.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework06\App.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework11\repository\CarsRepository.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework14\App.java
+C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework18\App.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework12\model\Person.java
+C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework18\model\Customer.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\Main.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework11\repository\CarsRepositoryImpl.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework09\Garage.java
@@ -29,9 +31,12 @@ C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework17\Car.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework10\abstractPackage\SomeClass.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework07\App.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework12\PersonDataProcessor.java
+C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework18\config\DatabaseConfig.java
+C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework18\model\Order.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework04\Task1.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework10\ByCondition.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework11\test\Main.java
+C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework18\dao\CustomerDAO.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework17\PerformanceCar.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework08\App.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework12\exceptions\InvalidGenderException.java
@@ -52,9 +57,11 @@ C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework12\exceptions\In
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework08\NewProduct.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework09\ShowCar.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework17\repository\CarRepository.java
+C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework18\dao\OrderDAO.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework09\CasualRace.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework09\Car.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework06\Product.java
+C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework18\config\FlywayMigration.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework09\App.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework12\exceptions\InvalidDataException.java
 C:\Users\admin\IdeaProjects\MyTestProject\src\homeworks\homework02\Task1.java
