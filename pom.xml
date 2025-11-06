@@ -4,70 +4,53 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Spring Boot Parent -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.0</version>
+        <relativePath/>
+    </parent>
+
     <groupId>com.homeworks</groupId>
     <artifactId>homework17</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Homework 17/18 - Maven + Lombok + DB + Flyway</name>
-    <description>Домашние 17-18. Работа с Maven, Lombok, PostgreSQL, Flyway</description>
+    <name>Homeworks 17-19 - Maven + Spring Boot + JPA</name>
+    <description>Домашние 17-19. Maven, Lombok, PostgreSQL, Flyway, Spring Boot, JPA</description>
 
     <properties>
+        <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <junit.version>5.8.1</junit.version>
-        <mockito.version>4.0.0</mockito.version>
-        <lombok.version>1.18.30</lombok.version>
-        <postgresql.version>42.7.0</postgresql.version>
-        <flyway.version>9.22.3</flyway.version>
-        <hikaricp.version>5.1.0</hikaricp.version>
     </properties>
 
     <dependencies>
-        <!-- JUnit 5 -->
+        <!-- Spring Boot Web -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Mockito -->
+        <!-- Spring Boot Data JPA -->
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
         <!-- PostgreSQL Driver -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- Flyway Core -->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>${flyway.version}</version>
         </dependency>
 
         <!-- Flyway PostgreSQL Support -->
@@ -78,35 +61,74 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- HikariCP (pool соединений) -->
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- HikariCP (уже включен в Spring Boot, но можно указать явно) -->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>${hikaricp.version}</version>
+        </dependency>
+
+        <!-- Spring Boot Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit 5 (уже в spring-boot-starter-test) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Mockito (уже в spring-boot-starter-test) -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <!-- Нестандартная структура: код в src, ресурсы в src/resources, тесты в test -->
+        <!-- Нестандартная структура: код в src, тесты в test -->
         <sourceDirectory>src</sourceDirectory>
         <testSourceDirectory>test</testSourceDirectory>
 
         <resources>
             <resource>
                 <directory>src/resources</directory>
-                <targetPath>.</targetPath>
             </resource>
         </resources>
+
         <testResources>
             <testResource>
                 <directory>test/resources</directory>
             </testResource>
         </testResources>
 
-        <finalName>homework17-app-${project.version}</finalName>
-
         <plugins>
-            <!-- Компилятор + аннотационные процессоры (Lombok) -->
+            <!-- Spring Boot Maven Plugin -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -114,137 +136,21 @@
                 <configuration>
                     <source>17</source>
                     <target>17</target>
-                    <encoding>UTF-8</encoding>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
+                            <version>1.18.30</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
 
-            <!-- Запуск тестов -->
+            <!-- Maven Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0</version>
-            </plugin>
-
-            <!-- ============================================== -->
-            <!-- FLYWAY MAVEN PLUGIN - ИСПРАВЛЕНО! -->
-            <!-- ============================================== -->
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>${flyway.version}</version>
-                <configuration>
-                    <!-- Подключение к БД -->
-                    <url>jdbc:postgresql://localhost:5433/homework18_db</url>
-                    <user>postgres</user>
-                    <password>postgres</password>
-
-                    <!-- Где искать миграции -->
-                    <locations>
-                        <location>filesystem:src/resources/db/migration</location>
-                    </locations>
-
-                    <!-- Создать baseline если БД уже существует -->
-                    <baselineOnMigrate>true</baselineOnMigrate>
-
-                    <!-- Схема по умолчанию -->
-                    <defaultSchema>public</defaultSchema>
-
-                    <!-- Показывать SQL в консоли -->
-                </configuration>
-
-                <!-- Добавляем PostgreSQL драйвер для плагина -->
-                <dependencies>
-                    <dependency>
-                        <groupId>org.postgresql</groupId>
-                        <artifactId>postgresql</artifactId>
-                        <version>${postgresql.version}</version>
-                    </dependency>
-                </dependencies>
-
-                <!-- Автоматически запускать миграции при package/install -->
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>migrate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Создание обычного JAR с манифестом -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>homeworks.homework18.App</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <!-- Fat JAR (если нужно собрать один исполняемый jar со всеми зависимостями) -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.4.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>homework17-executable-${project.version}</finalName>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>homeworks.homework18.App</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Копирование зависимостей в target/lib -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.6.0</version>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Maven Resources Plugin для копирования файлов миграций -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
             </plugin>
         </plugins>
     </build>
