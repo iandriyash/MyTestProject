@@ -1,0 +1,14 @@
+spring:
+  application.name: tv-store-api-tests
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties.hibernate.format_sql: true
+  datasource: # значения переопределит Testcontainers через System props
+    url: jdbc:postgresql://localhost:5432/tvdb
+    username: postgres
+    password: postgres
+
+management.endpoints.web.exposure.include: health,info
+logging.level.homeworks.homework22: DEBUG
+server.port: 0
