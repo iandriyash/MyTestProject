@@ -4,11 +4,13 @@ import homeworks.homework22.entity.Tv;
 import homeworks.homework22.repository.TvRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 @RequiredArgsConstructor
@@ -51,5 +53,14 @@ public class TvService {
 
     public boolean existsById(Long id) {
         return tvRepository.existsById(id);
+    }
+
+    // ----- Асинхронный метод для демонстрации многопоточности -----
+    @Async
+    public CompletableFuture<List<Tv>> findAllAsync() {
+        log.info("Асинхронное получение списка телевизоров");
+        // В @Async-методе не используем supplyAsync, чтобы не обходить Spring TaskExecutor
+        List<Tv> list = findAll();
+        return CompletableFuture.completedFuture(list);
     }
 }
